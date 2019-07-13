@@ -1,0 +1,25 @@
+﻿Nút 1-5 dòng nút hàng 1
+Nút 6-19 dòng nút hàng 2
+Nút 20-25 dòng nút hàng 3
+Nút 26-33 dòng chip đặt cược
+Nút 34 clear
+Nút 35 Bet
+
+1. start.js khởi tạo các biến và set độ cao độ rộng
++readMoneyIn -- Hàm tiền đập đập khi bấm bet -- dòng 281-cuối -- dùng ở dòng 132/hoverAndclick.js
+
+2. hoverAndclick.js chức năng như tên -- hàm rotateChip -- dòng 405-427
++function alertError dùng báo lỗi dòng 110-116
++function rollingTheBall lắc xí ngầu dòng 144-152 (copy hết để dùng);
+
+3. ballrolling.js dùng lắc xí ngầu.
++function showTextOnShaker là đồng hồ countdown dùng ở dòng 37-40,72-75.
+
+4. textOnShaker.js có function result(4,4,4) có thể truyền số khác vào dòng 17
+
+5. showResult.js có function showDices hiển thị xí ngầu.
++ function checkReward hiển thị số tiện nhận được và hiệu ứng tiền rơi.
+
+6. reward.js show kết quả function startBlur để làm mờ chữ hiện ra dùng ở dòng 131-146
++function blinkingButton hiệu ứng nhấp nháy ô trúng thưởng.
++Hiệu ứng tiền rơi 191-205

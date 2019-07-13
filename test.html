@@ -1,0 +1,216 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		#canvasDraw{
+			border: 1px solid blue;
+			width: 500px;
+			height: 300px;
+		}
+	</style>
+
+	<canvas id="canvasDraw"></canvas>
+
+	<script type="text/javascript">
+		var x=100
+		var size = 30;
+		function draw(){
+			var ctx = canvasDraw.getContext('2d');
+
+			ctx.clearRect(0,0,canvasDraw.width,canvasDraw.height);
+			ctx.font = size+"px foo";
+			ctx.fillStyle = "#ffd700";
+			ctx.textAlign = "center";
+			ctx.filter = 'opacity('+x+'%)';
+			ctx.fillText(-2000, 200, 100);
+			
+			x-=2;
+			size+=1;
+			var ani = requestAnimationFrame(draw);
+		}
+		draw();
+	</script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		#canvasDraw{
+			border: 1px solid blue;
+		}
+	</style>
+
+	<canvas id="canvasDraw"></canvas>
+
+	<script type="text/javascript">
+		var ctx = canvasDraw.getContext('2d');
+		var chip = new Image();
+		chip.src = 'img/chip.png';
+
+		// var x= new Array();
+		// var y= new Array();
+		// var speed= new Array();
+		// var chipNumber = new Array();
+
+		// canvasDraw.width=window.innerWidth-25;
+		// canvasDraw.height=window.innerHeight-25;
+
+		// for(var i = 1;i<=200;i++){
+		// 	y[i]=Math.floor(Math.random() * -100) -200,
+		// 	y[i]=Math.floor(Math.random() * 400),
+		// 	speed[i]=Math.floor(Math.random() * 10) + 4;
+
+		// 	chipNumber[i] = Math.floor(Math.random() * 8);
+		// }
+		
+		// var fallAnimation;
+		// drop();
+	
+		// function drop(){
+		// 	ctx.clearRect(0,0,canvasDraw.width,canvasDraw.height);
+		// 	for(var i = 1;i<=200;i++){					
+		// 		y[i]+=speed[i];
+		// 		speed[i]+=0.05;
+
+		// 		// add hình
+		// 		ctx.drawImage(chip,chip.height*chipNumber[i]+chipNumber[i]*9,0,chip.height,chip.height,x[i],y[i],chip.height,chip.height);
+		// 		// add hình
+
+		// 		if(y[i]>canvasDraw.height){
+		// 			y[i]=Math.floor(Math.random() * -100) -200;
+		// 			speed[i]=Math.floor(Math.random() * 10) + 4;
+		// 			x[i]=Math.floor(Math.random() * canvasDraw.width);
+		// 		}
+		// 	}
+		// 	fallAnimation = requestAnimationFrame(drop);
+		// }
+
+		var img = new Image();
+
+		img.onload = function(){
+			canvasDraw.width = img.width;
+			canvasDraw.height = img.height;
+			ctx.drawImage(img,0,0);
+		}
+		img.src='img/black-hole1.png';
+
+		function finalNumber(a,b){
+			while(a!=b){
+				if(a>b){
+					a-=b;
+				}
+				if(b>a){
+					b-=a;
+				}
+			}
+			return a;
+		}
+
+		blackHole()
+
+		function blackHole(){
+			var count = new Array(),
+			xx = new Array(),
+			yy = new Array(),
+			xxx = new Array(),
+			yyy = new Array();
+
+			var UCLN = new Array(),
+			tgx = new Array(),
+			tgy = new Array(),
+			sizePercent = new Array(),
+			chipNumber = new Array();
+
+			var ani;
+
+			for(var i =0;i<20;i++){
+				count[i] =1;
+				
+				xx[i]=Math.floor(Math.random() * canvasDraw.width) + 40,yy[i]=Math.floor(Math.random() * canvasDraw.width) + 40;
+				xxx[i]=xx[i],yyy[i]=yy[i];
+
+				UCLN[i] = finalNumber(xx[i],yy[i]);
+				tgx[i]=(250-xx[i])/UCLN[i];
+				tgy[i]=(260-yy[i])/UCLN[i];
+
+				chipNumber[i] = Math.floor(Math.random() * 8);
+			}
+
+			startRotate();
+			suck();
+
+			function suck(){
+				
+				for(var i =0;i<20;i++){
+					sizePercent[i]=(250-xxx[i])/(250-xx[i]);
+					ctx.save();
+
+					ctx.drawImage(chip,chip.height*chipNumber[i]+chipNumber[i]*9,0,chip.height,chip.height,xxx[i],yyy[i],chip.height*sizePercent[i],chip.height*sizePercent[i]);
+					ctx.restore();
+					
+					xxx[i]=xx[i]+tgx[i]*count[i];
+				 	yyy[i]=yy[i]+tgy[i]*count[i];
+
+					count[i]*=1.1;
+
+					if(sizePercent[i]<0){
+						count[i] =1;
+				
+						xx[i]=Math.floor(Math.random() * canvasDraw.width) + 40,yy[i]=Math.floor(Math.random() * canvasDraw.width) + 40;
+						xxx[i]=xx[i],yyy[i]=yy[i];
+
+						UCLN[i] = finalNumber(xx[i],yy[i]);
+						tgx[i]=(250-xx[i])/UCLN[i];
+						tgy[i]=(260-yy[i])/UCLN[i];
+
+						chipNumber[i] = Math.floor(Math.random() * 8);
+					}
+				}
+
+				ani = requestAnimationFrame(suck);
+			}
+
+		}
+
+		var angle=0;
+
+		function startRotate() {
+			ctx.clearRect(0,0,canvasDraw.width,canvasDraw.height);
+			ctx.save();
+		    rotateChip();
+		    ctx.restore();
+		    animationFrame = requestAnimationFrame(startRotate);
+		}
+		function rotateChip() {
+			ctx.save();
+		    ctx.translate(canvasDraw.width/2,canvasDraw.height/2);
+		    ctx.rotate(angle);
+
+		    ctx.drawImage(img,canvasDraw.width/-2,canvasDraw.height/-2);
+		    ctx.restore();
+
+		    if (angle >= 2*3.14) {
+		        angle = 0;
+		    }
+		    angle += 0.03;
+		}
+
+		
+		// x1:x,
+		// 		x2:126,
+		// 		y1:198,
+		// 		y2:188
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Oniz Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<div class="page-wrap">
+	  <div class="container-fluid">
+	  	<canvas id="backgroundCanvas"></canvas>
+		  <div class="row row1">
+		    <div class="col-sm-2 container" id="leftArea">
+		    	<div class="row top">
+		    		<img src="img/left-top-board.png">
+		    		<div class="board-content top-left">
+		    			<table id="live">
+		    				<tr>
+		    					<td><i class="fa fa-user"></i> ID:</td>
+		    					<td id="userId"></td>
+		    				</tr>
+		    				<tr>
+		    					<td><i class="fas fa-coins"></i> CASH:</td>
+		    					<td id="cashAmount"></td>
+		    				</tr>
+		    			</table>
+		    		</div>
+		    	</div>
+		    	<div id="show"></div>
+		    	<div class="row bottom">
+		    		<img src="img/left-bottom-board.png">
+		    		<div class="board-content bottom-left"></div>
+		    	</div>
+		    </div>
+
+		    <div class="col-sm-8 container" id="boardContainer">
+		    	<div class="containerCanvas">
+		    		<canvas id="canvasDraw"></canvas>
+					<canvas id="canvasDraw2"></canvas>
+					<div id="countdown"></div>
+					
+					<div class="money-bet-row1" id="area1"></div>
+					<div class="money-bet-row1" id="area2"></div>
+					<div class="money-bet-row1" id="area3"></div>
+					<div class="money-bet-row1" id="area4"></div>
+					<div class="money-bet-row1" id="area5"></div>
+
+					<div class="money-bet-row2" id="area6"></div>
+					<div class="money-bet-row2" id="area7"></div>
+					<div class="money-bet-row2" id="area8"></div>
+					<div class="money-bet-row2" id="area9"></div>
+					<div class="money-bet-row2" id="area10"></div>
+					<div class="money-bet-row2" id="area11"></div>
+					<div class="money-bet-row2" id="area12"></div>
+					<div class="money-bet-row2" id="area13"></div>
+					<div class="money-bet-row2" id="area14"></div>
+					<div class="money-bet-row2" id="area15"></div>
+					<div class="money-bet-row2" id="area16"></div>
+					<div class="money-bet-row2" id="area17"></div>
+					<div class="money-bet-row2" id="area18"></div>
+					<div class="money-bet-row2" id="area19"></div>
+
+					<div class="money-bet-row3" id="area20"></div>
+					<div class="money-bet-row3" id="area21"></div>
+					<div class="money-bet-row3" id="area22"></div>
+					<div class="money-bet-row3" id="area23"></div>
+					<div class="money-bet-row3" id="area24"></div>
+					<div class="money-bet-row3" id="area25"></div>
+
+		    	</div>
+			</div>
+
+		    <div class="col-sm-2 container" id="rightArea">
+		    	<div class="row top">
+		    		<img src="img/right-top-board.png">
+		    		<div class="board-content top-right"></div>
+		    	</div>
+		    	<div class="row bottom">
+		    		<img src="img/right-bottom-board.png">
+		    		<div class="board-content bottom-right"></div>
+		    	</div>
+		    </div>
+		  </div>
+
+		  <div class="row row2">
+			<div class="col-sm-12 container" id="bottomArea">
+				<div class="row rowBottom">
+					<img src="img/part-top.png" class="part-top">
+					<div class="bottom-center"></div>
+					<img src="img/part-bottom.png" class="part-bottom">
+				</div>
+			</div>
+		  </div>
+		</div>
+		<div class="audio">
+			<audio controls id="shake" preload="metadata">
+			 	<source src="audio/dice1.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="hoverButton" preload="metadata">
+			 	<source src="audio/hovers.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="chipRain1" preload="metadata">
+			 	<source src="audio/coindrop.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="chipRain2" preload="metadata">
+			 	<source src="audio/coindrop.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="alertSound" preload="metadata">
+			 	<source src="audio/wrong.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="betSound" preload="metadata">
+			 	<source src="audio/betz.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="lostSound" preload="metadata">
+			 	<source src="audio/lostz.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="drawSound" preload="metadata">
+			 	<source src="audio/drawz.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="tickSound" preload="metadata">
+			 	<source src="audio/tickz.mp3" type="audio/mpeg">
+			</audio>
+			<audio controls id="backgroundSound" preload="metadata">
+			 	<source src="audio/tickz.mp3" type="audio/mpeg">
+			</audio>
+		</div>	
+	</div>
+
+	<!-- <script type="text/javascript" src="js/start.js"></script> -->
+	<script type="text/javascript" src="js/starts.js"></script>
+	<script type="text/javascript" src="js/hoverAndclick.js"></script>
+	<script type="text/javascript" src="js/ballrolling.js"></script>
+	<script type="text/javascript" src="js/showResult.js"></script>
+	<script type="text/javascript" src="js/textOnShaker.js"></script>
+	<script type="text/javascript" src="js/reward.js"></script>
+	<script type="text/javascript" src="js/boardsizez.js"></script>
+	<script type="text/javascript" src="js/soundeffect.js"></script>
+	<script type="text/javascript" src="js/hiveMove.js"></script>
+</body>
+</html>
